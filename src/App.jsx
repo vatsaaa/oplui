@@ -14,59 +14,21 @@ const App = () => {
     setLoading(true);
     setIsOpen(true);
 
-    // Split the input text on semi-colon and prepare Urls for each search-phrase
-    let tokenizer = text.replace(/[&\/\\#`,+()$~%.'":*!?<>{}]/g, '').split(";");
-    let searchPhraseUrls = [];
-    let baseUrl = 'https://www.amazon.in/s?k=';
-
-    const getHtml = async (searchPhraseUrl) => {
-      console.log("Calling: " + searchPhraseUrl);
-      await axios.get(searchPhraseUrl).then((response) => {
-        console.log(response.data);
-      }).catch((error) => {
-        console.log(error);
-      });
-    }
-
-    // Split input text on semi-colon and get an array of URLs to fetch
-    for (let i = 0; i < tokenizer.length; i++) {
-      if (tokenizer[i] == "") {
-        continue;
-      }
-      else {
-        searchPhraseUrls[i] = baseUrl + tokenizer[i].trim().toLowerCase().replaceAll(' ', '+');
-        setTimeout(getHtml(searchPhraseUrls[i]), Math.floor(Math.random() * 1000) + 1);
-      }
-    }
-
     const options = {
-      method: 'POST',
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'text-davinci-003',
-        prompt:
-          'Extract keywords from this text. Make the first letter of every word uppercase and separate with commas:\n\n' +
-          text +
-          '',
-        temperature: 0.5,
-        max_tokens: 60,
-        top_p: 1.0,
-        frequency_penalty: 0.8,
-        presence_penalty: 0.0,
-      }),
+        'Content-Type': 'application/json'
+      }
     };
 
     try {
       const response = await fetch(
-        import.meta.env.VITE_OPENAI_API_URL,
+        import.meta.env.VITE_OPL_API_URL,
         options
       );
       const json = await response.json();
-      console.log(json.choices[0].text.trim());
-      setKeywords(json.choices[0].text.trim());
+      console.log(json);
+      setKeywords(json.who.trim());
       setLoading(false);
     } catch (error) {
       console.error(error);

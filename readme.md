@@ -17,7 +17,7 @@ npm install
 Rename `.env.example` to `.env` and add your API key. You can get your key at [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys).
 
 ```bash
-VITE_OPENAI_API_KEY='ADD_YOUR_KEY_HERE'
+VITE_OPL_API_KEY='ADD_YOUR_KEY_HERE'
 ```
 
 Important: Your API key is not secure as there is no backend. If you decide to use this tool in production, you should add a backend to it and store the API key there.
