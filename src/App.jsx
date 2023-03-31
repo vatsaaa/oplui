@@ -15,10 +15,14 @@ const App = () => {
     setIsOpen(true);
 
     const options = {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+        search_string: text,
+        num_of_products: 10
+      })
     };
 
     try {
