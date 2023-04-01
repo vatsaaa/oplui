@@ -11,7 +11,7 @@ import {
   CircularProgress,
 } from '@chakra-ui/react';
 
-const KeywordsModal = ({ keywords, loading, isOpen, closeModal }) => {
+const KeywordsTable = ({ keywords, loading, isOpen, closeModal }) => {
   return (
     <>
       <Modal isOpen={isOpen} onClose={closeModal}>
@@ -37,4 +37,4 @@ const KeywordsModal = ({ keywords, loading, isOpen, closeModal }) => {
     </>
   );
 };
-export default KeywordsModal;
+export default KeywordsTable;

@@ -3,7 +3,7 @@ import { Container, Box } from '@chakra-ui/react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import TextInput from './components/TextInput';
-import KeywordsModal from './components/KeywordsModal';
+import KeywordsTable from './components/KeywordsTable';
 
 const App = () => {
   const [keywords, setKeywords] = useState([]);
@@ -32,7 +32,7 @@ const App = () => {
       );
       const json = await response.json();
       console.log(json);
-      setKeywords(json.who.trim());
+      // setKeywords(json.who.trim());
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -50,7 +50,7 @@ const App = () => {
         <TextInput extractKeywords={extractKeywords} />
         <Footer />
       </Container>
-      <KeywordsModal
+      <KeywordsTable
         keywords={keywords}
         loading={loading}
         isOpen={isOpen}
