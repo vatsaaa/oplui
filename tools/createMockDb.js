@@ -4,8 +4,8 @@ import { join, dirname } from "path";
 import mockData from "./mockData.js";
 import { fileURLToPath } from 'url';
 
-const { products } = mockData;
-const data = JSON.stringify({ products });
+const { products, listings } = mockData;
+const data = JSON.stringify({ products, listings });
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename);
