@@ -14,16 +14,30 @@ const App = () => {
     setLoading(true);
     setIsOpen(true);
 
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
+    let options = {}
+
+    // Development mode always accesses local service and serves data from db.json
+    // Start local service using following two commands in a separate terminal
+    // 1. node tools/createMockDb.js # Ensures a fresh data base is provisioned
+    // 2. node tools/apiServer.js    # Starts a new server
+    if (import.meta.env.DEV) {
+      options["method"] = 'GET';
+      options["headers"] = {
+          'Content-Type': 'application/json'
+      };
+      import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_GET_URL
+    }
+    else {
+      options["method"] = 'POST';
+      options["headers"] = {
+          'Content-Type': 'application/json'
+      };
+      options["bobdy"] = JSON.stringify({
         search_string: text,
         num_of_products: 10
-      })
-    };
+      });
+      import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_POST_URL
+    }
 
     try {
       const response = await fetch(
@@ -31,8 +45,9 @@ const App = () => {
         options
       );
       const json = await response.json();
-      console.log(json);
-      // setKeywords(json.who.trim());
+      console.log(json["Essential Oils"]);
+      // response.choices[0].text
+      setKeywords(json["Essential Oils"][0]["url"]);
       setLoading(false);
     } catch (error) {
       console.error(error);

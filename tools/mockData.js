@@ -202,8 +202,48 @@ const products =
         "title": "MTR Special Garam Masala, 50g",
         "url": "https://www.amazon.in//MTR-Special-Garam-Masala-50g/dp/B00S4TNQ8W/ref=sr_1_10?keywords=Garam+Masala&qid=1680352327&sr=8-10"
       }
+    ],
+    "Body Trimmer": [
+      {
+        "brand": "PHILIPS",
+        "description": " For all BODY areas, even in sensitive areas   |  The unique Skin Protection System guards skin from blades   |  Bidirectional trimmer and comb catch & cut body hairs grow in any direction   |  No need to replace blades. Wet & Dry-Fully washable, Showerproof and easy cleaning. Cutter width-32 mm   |  100% showerproof, includes a shower cord   |  Powered by AA battery, includes 3 AA batteries   |  2 years manufacturer's warranty from the date of purchase   | ",
+        "details": "Brand-PHILIPS|Colour-Black|Material-Plastic|Special Feature-Cordless|Size-3.5 x 9 x 21 cm ; 240 g|Item Dimensions LxWxH-35 x 90 x 210 Millimeters|Pattern-Body Groomer|",
+        "id": 3,
+        "price": "1,132.",
+        "rank": "1",
+        "title": "Philips BG1025/15 Showerproof Body Groomer for Men",
+        "url": "https://www.amazon.in//Philips-BG1025-15-Showerproof-Groomer/dp/B00TO7K08C/ref=sr_1_1?keywords=Body+Trimmer&qid=1680411959&sr=8-1"
+      },
+      {
+        "brand": "PHILIPS",
+        "description": " 40 Minutes cordless use after an 8-hour charge   |  Confidently Shave or trim all body zones. Rounded tips and hypoallergenic foil for skin comfort   |  Includes 1 body comb for a natural trim (3mm)   |  Easy to clean and use in or out of the shower   |  The rubber grip is designed to ensure optimal handling even when wet, for better control during use   |  worldwide voltage, no oil needed   | ",
+        "details": "Brand-PHILIPS|Recommended Uses For Product-Body|Special Feature-Hypoallergenic, Cordless|Power Source-Battery Powered|Included Components-Product, Manual &amp; Warranty Card|Battery Life-2 Hours|Item Weight-100 Grams|Colour-Black, Grey|Blade Material-Stainless Steel|Head Type-Foil|",
+        "id": 3,
+        "price": "1,998.",
+        "rank": "2",
+        "title": "Philips BG3005/15 Cordless Bodygroomer - Skin Friendly, Showerproof, Full Body Hair Shaver and Trimmer",
+        "url": "https://www.amazon.in//PHILIPS-BG3005-15-Cordless-Bodygroomer/dp/B096VZGL9D/ref=sr_1_2?keywords=Body+Trimmer&qid=1680411959&sr=8-2"
+      },
+      {
+        "brand": "",
+        "description": " Smart travel lock function - 3 second long press button to start | Ceramic and curved stainless steel blades with Safe-Edge technology ensures no tugs and pulls | Multiple length comb, prevents nicks and cuts | Safest balls trimmer, protects your manhood and your crown jewels   |  Use only DURACELL | No charging needed, 2 AAA Battery powered operation | Ultra quiet and silent trimming | 6000RPM powerful motor   |  Waterproof IPX6, silicon grip, fully washable and showerproof | Rust resistant and hygienic detachable ceramic blades   |  1 year warranty on manufacturing defects | Includes 1 trimmer, 1 comb, 1 cleaning brush, 1 stand and warranty card   |  Best gift for men | Comes in a premium smartphone like box   | ",
+        "details": "Recommended Uses For Product-Pubic|Item Weight-330 Grams|Brand-ZLADE|Power Source-Battery Powered|Material-Ceramic,Stainless Steel|Special Feature-Portable, Waterproof, Wet, Ergonomic Design, Detachable Head|Item Dimensions LxWxH-20 x 9.5 x 6.5 Centimeters|Blade Material-Ceramic and Stainless Steel|Target Audience-Men|Batteries Required?-No|",
+        "id": 3,
+        "price": "1,749.",
+        "rank": "3",
+        "title": "Zlade Ballistic LITE Manscaping Body Trimmer for Men | Beard, Body, Pubic Hair Grooming | Private Part Shaving | Waterproof, Cordless AAA Battery Powered | Smart Travel Lock - 3 Second Long Press Button to Start",
+        "url": "https://www.amazon.in//Ballistic-Manscaping-Grooming-Waterproof-Cordless/dp/B0BD8RXV99/ref=sr_1_3?keywords=Body+Trimmer&qid=1680411959&sr=8-3"
+      }
     ]
 }
+
+const listings = [
+  {
+    "search_phrase": "Essential Oils",
+    "keywords": "",
+    "Details": "",
+  }
+]
 
 export default {
   products
