@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import TextInput from './components/TextInput';
 import KeywordsTable from './components/KeywordsTable';
 
-const App = () => {
+const App = () => { 
   const [keywords, setKeywords] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -25,18 +25,18 @@ const App = () => {
       options["headers"] = {
           'Content-Type': 'application/json'
       };
-      import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_GET_URL
+      import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_GET_LISTINGS_URL
     }
     else {
       options["method"] = 'POST';
       options["headers"] = {
           'Content-Type': 'application/json'
       };
-      options["bobdy"] = JSON.stringify({
+      options["body"] = JSON.stringify({
         search_string: text,
         num_of_products: 10
       });
-      import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_POST_URL
+      import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_POST_LISTINGS_URL
     }
 
     try {
@@ -44,10 +44,10 @@ const App = () => {
         import.meta.env.VITE_OPL_API_URL,
         options
       );
+
       const json = await response.json();
-      console.log(json["Essential Oils"]);
       // response.choices[0].text
-      setKeywords(json["Essential Oils"][0]["url"]);
+      json.map(j => setKeywords(JSON.stringify(j)));
       setLoading(false);
     } catch (error) {
       console.error(error);

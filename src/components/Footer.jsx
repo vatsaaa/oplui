@@ -6,7 +6,7 @@ const Footer = () => {
     <Box marginTop={50}>
       <Flex justifyContent='center' alignItems='center'>
         <Image src={logo} marginRight={1} />
-        <Text fontSize={10} color='black'>Powered By Open AI</Text>
+        <Text fontSize={10} color='white'>Powered By Open AI</Text>
       </Flex>
     </Box>
   );
