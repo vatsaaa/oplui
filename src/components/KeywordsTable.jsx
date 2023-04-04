@@ -16,42 +16,45 @@ import {
   Tfoot,
   Tr,
   Th,
-  Td,
   TableCaption,
   TableContainer,
 } from '@chakra-ui/react';
 
 
 const KeywordsTable = ({ keywords, loading, isOpen, closeModal }) => {
-  // const obj = JSON.parse(keywords);
   return (
     <>
-      <Modal isOpen={isOpen} onClose={closeModal}>
+      <Modal size="5xl" isOpen={isOpen} onClose={closeModal} isCentered={true}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Keywords</ModalHeader>
+        <ModalContent >
+          <ModalHeader>Listings</ModalHeader>
           <ModalCloseButton />
           <ModalBody display='flex' alignItems='center' justifyContent='center'>
             {loading ? (
               <CircularProgress isIndeterminate color='blue.300' />
             ) : (
               <TableContainer>
-                <Table variant='striped' colorScheme='blue'>
+                <Table variant='striped' colorScheme='linkedin'>
                   <TableCaption>Listings</TableCaption>
                   <Thead>
                     <Tr>
                       <Th>Search Phrase</Th>
                       <Th>Keywords</Th>
                       <Th>Description</Th>
+                      <Th>Title</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
-                  <Tr>
-                    {/* <Td>{obj["search_phrase"]}</Td>
-                    <Td>{obj["keywords"]}</Td>
-                    <Td>{obj["details"]}</Td> */}
-                  </Tr>
+                    {keywords}
                   </Tbody>
+                  <Tfoot>
+                    <Tr>
+                      <Th>Search Phrase</Th>
+                      <Th>Keywords</Th>
+                      <Th>Description</Th>
+                      <Th>Title</Th>
+                    </Tr>
+                  </Tfoot>
                 </Table>
               </TableContainer>
             )}

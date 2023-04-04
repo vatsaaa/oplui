@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Box } from '@chakra-ui/react';
+import { Container, Box, Tr, Td } from '@chakra-ui/react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import TextInput from './components/TextInput';
@@ -45,9 +45,20 @@ const App = () => {
         options
       );
 
-      const json = await response.json();
+      const jsonData = await response.json();
       // response.choices[0].text
-      json.map(j => setKeywords(JSON.stringify(j)));
+      const tableRows = jsonData.map(item => {
+        return (
+          <Tr>
+            <Td>{item["search_phrase"]}</Td>
+            <Td>{item["keywords"]}</Td>
+            <Td>{item["details"]}</Td>
+            <Td>{item["title"]}</Td>
+          </Tr>
+        );
+      });
+
+      setKeywords(tableRows);
       setLoading(false);
     } catch (error) {
       console.error(error);
