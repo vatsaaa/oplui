@@ -36,6 +36,9 @@ To build for production:
 npm run build
 ```
 
+## Chakra UI
+[Chakra UI crash course] (https://www.youtube.com/watch?v=iXsM6NkEmFc&list=PL4cUxeGkcC9hcnIeryurNMMcGBHp7AYlP)
+
 ## License
 
 MIT License
