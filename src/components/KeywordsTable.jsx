@@ -24,7 +24,7 @@ import {
 const KeywordsTable = ({ keywords, loading, isOpen, closeModal }) => {
   return (
     <>
-      <Modal size="5xl" isOpen={isOpen} onClose={closeModal} isCentered={true}>
+      <Modal size="6xl" isOpen={isOpen} onClose={closeModal} isCentered={true}>
         <ModalOverlay />
         <ModalContent >
           <ModalHeader>Listings</ModalHeader>
@@ -34,7 +34,7 @@ const KeywordsTable = ({ keywords, loading, isOpen, closeModal }) => {
               <CircularProgress isIndeterminate color='blue.300' />
             ) : (
               <TableContainer>
-                <Table variant='striped' colorScheme='linkedin'>
+                <Table variant='striped' colorScheme='linkedin' sx={{ borderCollapse: 'collapse' }}>
                   <TableCaption>Listings</TableCaption>
                   <Thead>
                     <Tr>
