@@ -50,33 +50,24 @@ const App = () => {
       let search_phrases = text
       let sp_array = search_phrases.split(";");
 
-      let tableRows = "";
-      sp_array.map(sp => {
-        const kw = jsonData[sp.trim()];
-        const dtls = jsonData[sp.trim()]["details"];
-        const ttl = jsonData[sp.trim()]["title"];
+      let tableRows = sp_array.map(sp => {
         const trimmed_sp = sp.trim();
+        const kw = jsonData[trimmed_sp]["keywords"].toString();
+        const dtls = jsonData[trimmed_sp]["details"];
+        const ttl = jsonData[trimmed_sp]["title"];
+
         console.log(jsonData[sp.trim()]);
-        tableRows.concat(
-            "<Tr><Td>" + { trimmed_sp } + "</Td><Td>" + { kw } + "</Td><Td>" + { dtls } + "</Td><Td>" + { ttl } + "</Td></Tr>"
+        return(
+            <tr>
+                <td>{trimmed_sp}</td>
+                <td>{kw}</td>
+                <td>{dtls}</td>
+                <td>{ttl}</td>
+            </tr>
         );
       });
 
-      // const tableRows = jsonData.map(item => {
-      //   // TODO: Wrap the text in cells
-      //   // TODO: Remove last comma from the keywords cell
-      //   return (
-      //     <Tr>
-      //       <Td>{item["search_phrase"]}</Td>
-      //       <Td>{item["keywords"] + ", "}</Td>
-      //       <Td>{item["details"]}</Td>
-      //       <Td>{item["title"]}</Td>
-      //     </Tr>
-      //   );
-      // });
-
-      console.log(tableRows);
-      // setKeywords(tableRows);
+      setKeywords(tableRows);
       setLoading(false);
     } catch (error) {
       console.error(error);
