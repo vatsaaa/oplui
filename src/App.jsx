@@ -58,12 +58,12 @@ const App = () => {
 
         console.log(jsonData[sp.trim()]);
         return(
-            <tr>
-                <td>{trimmed_sp}</td>
-                <td>{kw}</td>
-                <td>{dtls}</td>
-                <td>{ttl}</td>
-            </tr>
+            <Tr>
+                <Td>{trimmed_sp}</Td>
+                <Td>{kw}</Td>
+                <Td>{dtls}</Td>
+                <Td>{ttl}</Td>
+            </Tr>
         );
       });
 
