@@ -39,9 +39,9 @@ const KeywordsTable = ({ keywords, loading, isOpen, closeModal }) => {
                   <Thead>
                     <Tr>
                       <Th>Search Phrase</Th>
-                      <Th>Keywords</Th>
-                      <Th>Description</Th>
                       <Th>Title</Th>
+                      <Th>Description</Th>
+                      <Th>Keywords</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
@@ -50,9 +50,9 @@ const KeywordsTable = ({ keywords, loading, isOpen, closeModal }) => {
                   <Tfoot>
                     <Tr>
                       <Th>Search Phrase</Th>
-                      <Th>Keywords</Th>
-                      <Th>Description</Th>
                       <Th>Title</Th>
+                      <Th>Description</Th>
+                      <Th>Keywords</Th>
                     </Tr>
                   </Tfoot>
                 </Table>
