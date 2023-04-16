@@ -60,9 +60,9 @@ const App = () => {
         return(
             <Tr>
                 <Td>{trimmed_sp}</Td>
-                <Td>{kw}</Td>
-                <Td>{dtls}</Td>
                 <Td>{ttl}</Td>
+                <Td>{dtls}</Td>
+                <Td>{kw}</Td>
             </Tr>
         );
       });
