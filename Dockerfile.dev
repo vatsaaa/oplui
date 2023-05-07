@@ -1,0 +1,7 @@
+FROM node:19.8.1
+RUN apt update -y && apt upgrade -y && apt install npm -y && apt install nginx -y
+WORKDIR /app
+COPY . /app
+RUN npm install && npm run build
+EXPOSE 5173
+CMD ["npm", "run", "dev"]
