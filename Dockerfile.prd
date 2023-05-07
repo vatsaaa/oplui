@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 RUN npm install && npm run build
 
-FROM nginx:latest as production
+FROM nginx:1.24 as production
 ENV NODE_ENV production
 
 COPY --from=build /app/dist /usr/share/nginx/html
