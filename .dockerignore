@@ -8,5 +8,4 @@ tools
 .gitignore
 *.md
 docker-compose*
-nginx.conf
 dist
