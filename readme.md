@@ -67,7 +67,14 @@ Application is server [here](https://localhost:3000)
 docker run --rm -v $(pwd)/src:/app/src:ro -d -p 3000:5173 opl-ui-img-06052023
 ```
 
-You can edit files on your local and they will be reflected in the container and on your running local instance.
+**For windows
+1. Consider using Power Shell and replace $(pwd) with %cd%
+2. If for any reason you cannot, replace $(pwd)/src with the absolute path of src folder
+3. Replace / with \ as needed
+4. Use this run command `docker run --rm -e CHOKIDAR_USEPOLLING=true -v $(pwd)/src:/app/src:ro -d -p 3000:5173 opl-ui-img-06052023`
+**
+
+Now, you can edit files on your local and they will be reflected in the container and on your running local instance.
 
 ## Handy docker commands
 ### Attach to a running server
