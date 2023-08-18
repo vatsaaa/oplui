@@ -1,3 +1,4 @@
+import {v4 as uuidv4} from 'uuid';
 import { useState } from 'react';
 import { Container, Box, Tr, Td } from '@chakra-ui/react';
 import Header from './components/Header';
@@ -15,29 +16,34 @@ const App = () => {
     setIsOpen(true);
 
     let options = {}
+    let reqUuid = uuidv4();
 
-    // Development mode always accesses local service and serves data from db.json
-    // Start local service using following two commands in a separate terminal
-    // 1. node tools/createMockDb.js # Ensures a fresh data base is provisioned
-    // 2. node tools/apiServer.js    # Starts a new server
-    // if (import.meta.env.DEV) {
-    //   options["method"] = 'GET';
-    //   options["headers"] = {
-    //       'Content-Type': 'application/json'
-    //   };
-    //   import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_GET_LISTINGS_URL
-    // }
-    // else {
+    // Development mode is default, with local service it serves data from db.json
+    // Start local service using following commands
+    // 1. Add "VITE_DEV=TRUE" in environment file
+    // Then, in a separate terminal run following
+    // 2. node tools/createMockDb.js # Ensures a fresh data base is provisioned
+    // 3. node tools/apiServer.js    # Starts a new server
+    if (import.meta.env.VITE_DEV) {
+      alert("Running in development mode...")
+      options["method"] = 'GET';
+      options["headers"] = {
+          'Content-Type': 'application/json'
+      };
+      import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_GET_LISTINGS_URL
+    }
+    else {
       options["method"] = 'POST';
       options["headers"] = {
           'Content-Type': 'application/json'
       };
       options["body"] = JSON.stringify({
         search_string: text,
-        num_of_products: 2 // TODO: Get this from user config or from user input
+        num_of_products: 2,
+        uuid: reqUuid
       });
       import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_POST_LISTINGS_URL
-    // }
+    }
 
     try {
       const response = await fetch(
@@ -56,7 +62,6 @@ const App = () => {
         const dtls = jsonData[trimmed_sp]["details"];
         const ttl = jsonData[trimmed_sp]["title"];
 
-        console.log(jsonData[sp.trim()]);
         return(
             <Tr>
                 <Td>{trimmed_sp}</Td>
