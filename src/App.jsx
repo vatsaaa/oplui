@@ -7,22 +7,6 @@ import Footer from './components/Footer';
 import TextInput from './components/TextInput';
 import KeywordsTable from './components/KeywordsTable';
 
-const getListings = (url, options) => {
-  if(import.meta.env.VITE_DEV) {
-    axios.get(import.meta.env.VITE_OPL_API_URL, options).then(
-      response => {
-        return response.data;
-      }
-    )
-  } else {
-    axios.post(import.meta.env.VITE_OPL_API_URL, options).then(
-      response => {
-        return response.data;
-      }
-    )
-  }
-}
-
 const App = () => { 
   const [keywords, setKeywords] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -68,32 +52,30 @@ const App = () => {
     if(import.meta.env.VITE_DEV) {
       axios.get(import.meta.env.VITE_OPL_API_URL, options).then(
         response => {
-          console.log(response.data[0]["keywords"]);
-          // TODO: Create an output file for users as well
           let tableRows = response.data.map(tr => {
-          const dispTitle = tr["title"];
-          const dispDetails = tr["details"];
-
-          let dispKeywords = "";
-          let i = 0;
-          do {
-            dispKeywords = dispKeywords + tr["keywords"][i] + ", ";
+            const dispTitle = tr["title"];
+            const dispDetails = tr["details"];
+            
+            let dispKeywords = "";
+            let i = 0;
+            do {
+              dispKeywords = dispKeywords + tr["keywords"][i] + ", ";
               i++;
-          } while (i < 5);
+            } while (i < 5);
 
-          return(
-            <Tr>
-              <Td>{tr["search_phrase"]}</Td>
-              <Td>{dispTitle.split(' ').slice(0, 5).join(' ')}...</Td>
-              <Td>{dispDetails.split(' ').slice(0, 5).join(' ')}...</Td>
-              <Td>{dispKeywords}...</Td>
-            </Tr>
-          );
-        });
+            return(
+              <Tr>
+                <Td>{tr["search_phrase"]}</Td>
+                <Td>{dispTitle.split(' ').slice(0, 5).join(' ')}...</Td>
+                <Td>{dispDetails.split(' ').slice(0, 5).join(' ')}...</Td>
+                <Td>{dispKeywords}...</Td>
+              </Tr>
+            );
+          });
           setKeywords(tableRows);
           setLoading(false);
         }
-      )
+      );
     } else {
       axios.get(import.meta.env.VITE_OPL_API_URL, options).then(
         response => {
