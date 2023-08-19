@@ -71,15 +71,25 @@ const App = () => {
           console.log(response.data[0]["keywords"]);
           // TODO: Create an output file for users as well
           let tableRows = response.data.map(tr => {
-            return(
-              <Tr>
-                <Td>{tr["search_phrase"]}</Td>
-                <Td>{tr["title"]}</Td>
-                <Td>{tr["details"]}</Td>
-                <Td>{tr["keywords"]}</Td>
-              </Tr>
-            );
-          });
+          const dispTitle = tr["title"];
+          const dispDetails = tr["details"];
+
+          let dispKeywords = "";
+          let i = 0;
+          do {
+            dispKeywords = dispKeywords + tr["keywords"][i] + ", ";
+              i++;
+          } while (i < 5);
+
+          return(
+            <Tr>
+              <Td>{tr["search_phrase"]}</Td>
+              <Td>{dispTitle.split(' ').slice(0, 5).join(' ')}...</Td>
+              <Td>{dispDetails.split(' ').slice(0, 5).join(' ')}...</Td>
+              <Td>{dispKeywords}...</Td>
+            </Tr>
+          );
+        });
           setKeywords(tableRows);
           setLoading(false);
         }
