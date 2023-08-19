@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {v4 as uuidv4} from 'uuid';
 import { useState } from 'react';
 import { Container, Box, Tr, Td } from '@chakra-ui/react';
@@ -5,6 +6,22 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import TextInput from './components/TextInput';
 import KeywordsTable from './components/KeywordsTable';
+
+const getListings = (url, options) => {
+  if(import.meta.env.VITE_DEV) {
+    axios.get(import.meta.env.VITE_OPL_API_URL, options).then(
+      response => {
+        return response.data;
+      }
+    )
+  } else {
+    axios.post(import.meta.env.VITE_OPL_API_URL, options).then(
+      response => {
+        return response.data;
+      }
+    )
+  }
+}
 
 const App = () => { 
   const [keywords, setKeywords] = useState([]);
@@ -25,7 +42,7 @@ const App = () => {
     // 2. node tools/createMockDb.js # Ensures a fresh data base is provisioned
     // 3. node tools/apiServer.js    # Starts a new server
     if (import.meta.env.VITE_DEV) {
-      alert("Running in development mode...")
+      console.log("Running in DEV mode");
       options["method"] = 'GET';
       options["headers"] = {
           'Content-Type': 'application/json'
@@ -33,6 +50,7 @@ const App = () => {
       import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_GET_LISTINGS_URL
     }
     else {
+      console.log("Running in PROD mode");
       options["method"] = 'POST';
       options["headers"] = {
           'Content-Type': 'application/json'
@@ -45,37 +63,44 @@ const App = () => {
       import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_POST_LISTINGS_URL
     }
 
-    try {
-      const response = await fetch(
-        import.meta.env.VITE_OPL_API_URL,
-        options
+    console.log("URL:" + import.meta.env.VITE_OPL_API_URL);
+
+    if(import.meta.env.VITE_DEV) {
+      axios.get(import.meta.env.VITE_OPL_API_URL, options).then(
+        response => {
+          console.log(response.data[0]["keywords"]);
+          // TODO: Create an output file for users as well
+          let tableRows = response.data.map(tr => {
+            return(
+              <Tr>
+                <Td>{tr["search_phrase"]}</Td>
+                <Td>{tr["title"]}</Td>
+                <Td>{tr["details"]}</Td>
+                <Td>{tr["keywords"]}</Td>
+              </Tr>
+            );
+          });
+          setKeywords(tableRows);
+          setLoading(false);
+        }
+      )
+    } else {
+      axios.get(import.meta.env.VITE_OPL_API_URL, options).then(
+        response => {
+          let tableRows = response.data.map(tr => {
+            return(
+              <Tr>
+                <Td>{tr["search_phrase"]}</Td>
+                <Td>{tr["title"]}</Td>
+                <Td>{tr["details"]}</Td>
+                <Td>{tr["keywords"]}</Td>
+              </Tr>
+            );
+          });
+          setKeywords(tableRows);
+          setLoading(false);
+        }
       );
-
-      const jsonData = await response.json();
-
-      let search_phrases = text
-      let sp_array = search_phrases.split(";");
-
-      let tableRows = sp_array.map(sp => {
-        const trimmed_sp = sp.trim();
-        const kw = jsonData[trimmed_sp]["keywords"].toString();
-        const dtls = jsonData[trimmed_sp]["details"];
-        const ttl = jsonData[trimmed_sp]["title"];
-
-        return(
-            <Tr>
-                <Td>{trimmed_sp}</Td>
-                <Td>{ttl}</Td>
-                <Td>{dtls}</Td>
-                <Td>{kw}</Td>
-            </Tr>
-        );
-      });
-
-      setKeywords(tableRows);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
     }
   };
 
