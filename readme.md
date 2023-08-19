@@ -9,7 +9,7 @@ This is a simple tool built with React and Chakra UI that uses the Open AI [chat
 # How to use
 ## Get the source
 ```bash 
-git clone https://github.com/vatsaaa/oplui.git
+$ git clone https://github.com/vatsaaa/oplui.git
 ```
 
 <strong>OR</strong>
@@ -19,7 +19,7 @@ Download the source code without from [here](https://github.com/vatsaaa/oplui/ar
 ## Local
 ### Install dependencies
 ```bash
-npm install
+$ npm install
 ```
 
 Rename `.env.example` to `.env` and add your API key. You can get your key at [OpenAI API](https://platform.openai.com/account/api-keys).
@@ -30,41 +30,55 @@ VITE_OPL_API_KEY='ADD_YOUR_KEY_HERE'
 
 Important: Your API key is not secure as there is no backend. If you decide to use this tool in production, you should add a backend to it and store the API key there.
 
-### Run the dev server:
-
+### Run in dev mode:
+#### Start local API (only for dev mode)
 ```bash
-npm run dev
+$ echo "VITE_DEV=true" >> .env
+```
+#### Provision a fresh database
+```bash
+$ node tools/createMockDb.js 
+```
+#### Start local API
+```bash
+$ node tools/apiServer.js
+```
+#### Start the UI:
+```bash
+$ npm run dev
 ```
 
 Open this [link](http://localhost:3000) with your browser to see the result.
 
-### Build for production:
-
+### Check for production mode readiness
+#### Build for production:
 ```bash
-npm run build
+$ npm run build
+```
+#### Preview production distributable
+```bash
+npm run preview
 ```
 
 ## Containers
 ### Build production container
 ```bash
-docker build -f Dockerfile.prd -t opl-ui-img-0107052023 .
+$ docker build -f Dockerfile.prd -t opl-ui-img-0107052023 .
 ```
-
 ### Run production container
 ```bash
-docker run --rm -d -p 3000:80 opl-ui-img-0107052023
+$ docker run --rm -d -p 3000:80 opl-ui-img-0107052023
 ```
-
 ### Build development container
 ```bash
-docker build -f Dockerfile.dev -t opl-ui-img-0107052023 .
+$ docker build -f Dockerfile.dev -t opl-ui-img-0107052023 .
 ```
 
 Application is server [here](https://localhost:3000)
 
 ### Run development server
 ```bash
-docker run --rm -v $(pwd)/src:/app/src:ro -d -p 3000:5173 opl-ui-img-06052023
+$ docker run --rm -v $(pwd)/src:/app/src:ro -d -p 3000:5173 opl-ui-img-06052023
 ```
 
 **For windows
