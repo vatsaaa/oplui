@@ -2,11 +2,12 @@ import axios from 'axios';
 import {v4 as uuidv4} from 'uuid';
 import { useState } from 'react';
 import { Container, Box, Tr, Td } from '@chakra-ui/react';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 import TextInput from './components/TextInput';
+import { DarkModeSwitch } from './components/DarkModeSwitch';
 import KeywordsTable from './components/KeywordsTable';
 
 const headers = [
@@ -25,24 +26,16 @@ const App = () => {
     setLoading(true);
     setIsOpen(true);
 
-    let options = {}
+    let options = {} // declared here to ensure this remains in scope later
     let reqUuid = uuidv4();
 
-    // Development mode is default, with local service it serves data from db.json
-    // Start local service using following commands
-    // 1. Add "VITE_DEV=TRUE" in environment file
-    // Then, in a separate terminal run following
-    // 2. node tools/createMockDb.js # Ensures a fresh data base is provisioned
-    // 3. node tools/apiServer.js    # Starts a new server
-    if (import.meta.env.VITE_DEV) {
-      console.log("Running in DEV mode");
+    if (import.meta.env.VITE_DEV) { // Default mode i.e. .env.example has this set to true
       options["method"] = 'GET';
       options["headers"] = {
           'Content-Type': 'application/json'
       };
       import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_GET_LISTINGS_URL
-    }
-    else {
+    } else {
       console.log("Running in PROD mode");
       options["method"] = 'POST';
       options["headers"] = {
@@ -56,15 +49,13 @@ const App = () => {
       import.meta.env.VITE_OPL_API_URL = import.meta.env.VITE_OPL_API_POST_LISTINGS_URL
     }
 
-    console.log("URL:" + import.meta.env.VITE_OPL_API_URL);
-
     if(import.meta.env.VITE_DEV) {
       axios.get(import.meta.env.VITE_OPL_API_URL, options).then(
         response => {
           const csvReport = {
             data: response.data,
             headers: headers,
-            filename: 'output/opfile.csv'
+            filename: import.meta.env.VITE_OPL_OP_FILE_NAME
           };
 
           let tableRows = response.data.map(tr => {
@@ -94,20 +85,9 @@ const App = () => {
         }
       );
     } else {
-      axios.get(import.meta.env.VITE_OPL_API_URL, options).then(
+      axios.post(import.meta.env.VITE_OPL_API_URL, options["body"]).then(
         response => {
-          let tableRows = response.data.map(tr => {
-            return(
-              <Tr>
-                <Td>{tr["search_phrase"]}</Td>
-                <Td>{tr["title"]}</Td>
-                <Td>{tr["details"]}</Td>
-                <Td>{tr["keywords"]}</Td>
-              </Tr>
-            );
-          });
-          setKeywords(tableRows);
-          setLoading(false);
+          console.log(response.data);
         }
       );
     }
@@ -120,6 +100,7 @@ const App = () => {
   return (
     <Box bg='blue.600' color='white' height='120vh' paddingTop={130}>
       <Container maxW='3xl' centerContent>
+        <DarkModeSwitch/>
         <Header />
         <TextInput extractKeywords={extractKeywords} />
         <Footer />
