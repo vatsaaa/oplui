@@ -252,7 +252,46 @@ const listings = [
   }
 ]
 
+const tasks = [
+  {
+    "id": "1",
+    "search_phrase": "Essential Oils; Garam Masala; Body Trimmer",
+    "date": "22-Sep-2023",
+    "time": "10:01:34 AM",
+    "status": "Complete"
+  },
+  {
+    "id": "2",
+    "search_phrase": "Wall clock",
+    "date": "12-Aug-2023",
+    "times": "09:11:24 PM",
+    "status": "Complete"
+  },
+  {
+    "id": "3",
+    "search_phrase": "Flower pot; Cushion Covers",
+    "date": "21-Jan-2021",
+    "time": "09:11:24 PM",
+    "status": "Error"
+  },
+  {
+    "id": "4",
+    "search_phrase": "Tea pot; Photo frame",
+    "date": "10-Apr-2022",
+    "time": "09:11:24 PM",
+    "status": "Pending"
+  },
+  {
+    "id": "5",
+    "search_phrase": "Coffee table; iPhone 13 Pro Max",
+    "date": "10-Apr-2022",
+    "time": "09:11:24 PM",
+    "status": "Pending"
+  }
+]
+
 export default {
+  listings,
   products,
-  listings
+  tasks
 };

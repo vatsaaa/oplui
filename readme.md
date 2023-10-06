@@ -114,6 +114,17 @@ Application is served [here](https://localhost:3000)
 MIT License
 
 ## References
+[Working with axios](https://blog.logrocket.com/how-to-make-http-requests-like-a-pro-with-axios/#axiospost)
 [Dockerize your React app](https://dev.to/karanpratapsingh/dockerize-your-react-app-4j2e)
 [CI/CD workflow on GitHub for React app](https://dev.to/dyarleniber/setting-up-a-ci-cd-workflow-on-github-actions-for-a-react-app-with-github-pages-and-codecov-4hnp)
 [Container Security](https://anchore.com/blog/docker-security-best-practices-a-complete-guide/)
+https://www.kinetica.com/blog/gpus-transformed-xva-pricing-risk-calculations/
+https://financialit.net/news/cloud/hsbc-counterparty-credit-risk-and-valuation-adjustments-google-cloud-case-study
+https://www.linkedin.com/pulse/blueprint-enterprise-architecture-richard-moran/
+https://blog.protiviti.com/2018/07/02/blueprint-change-capability-reference-architecture-can-help-map-road-organizational-transformation-part-1-2/
+https://www.leanix.net/en/wiki/ea/reference-architecture
+[Implementing the Strategy Pattern using LLMs](https://blackhc.github.io/llm-strategy/)
+[5 Tools for Effortless Data Science](https://www.kdnuggets.com/2021/01/5-tools-effortless-data-science.html)
+[How Large Language Models Will Revolutionize Software Engineering](https://blog.blackhc.net/2022/12/llm_software_engineering/)
+[Chatbot with Langchain and Pinecone](https://www.pinecone.io/learn/javascript-chatbot/)
+[Chunking Strategies](https://www.pinecone.io/learn/chunking-strategies/)

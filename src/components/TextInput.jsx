@@ -25,7 +25,8 @@ const TextInput = ({ extractKeywords }) => {
   return (
     <>
       <Textarea
-        bg='blue.400'
+        id='txtAr01'
+        bg='blue.200'
         padding={4}
         marginTop={6}
         height={120}
